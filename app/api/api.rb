@@ -4,6 +4,7 @@ class Api < Grape::API
   default_error_formatter :json
   content_type :json, 'application/json'
   mount Posts
+  mount Comments
   before do
     header['Access-Control-Allow-Origin'] = '*'
     header['Access-Control-Request-Method'] = '*'
