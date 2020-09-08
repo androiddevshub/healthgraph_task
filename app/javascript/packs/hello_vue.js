@@ -13,9 +13,38 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
+import Router from 'vue-router'
+Vue.use(Router)
+
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
+
+
+
+
+import Post from './components/post/post.vue'
+import Trash from './components/trash/trash.vue'
+
 document.addEventListener('DOMContentLoaded', () => {
+  const router = new Router({
+    routes: [
+      {
+        path: '/',
+        name: 'post',
+        component: Post
+      },
+      {
+        path: '/trash',
+        name: 'trash',
+        component: Trash
+      }
+    ],
+    mode: "history"
+  });
   const app = new Vue({
-    render: h => h(App)
+    render: h => h(App),
+    router : router
   }).$mount()
   document.body.appendChild(app.$el)
 
@@ -46,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
 //     data: {
 //       message: "Can you say hello?"
 //     },
-//     components: { App }
+//     components: { App, Post }
 //   })
 // })
 //
