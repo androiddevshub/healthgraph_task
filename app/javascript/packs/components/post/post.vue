@@ -13,17 +13,23 @@
                   <el-col :span="4">
                     <el-row>
                       <el-col :span="12">
-                        <b-icon icon="x-circle" scale="3" variant="danger" @click="softDeletePost(post)" style="float: right; padding: 3px 0"></b-icon>
+                        <el-tooltip class="item" effect="dark" content="Soft Delete" placement="left">
+                          <b-icon icon="x-circle" scale="3" variant="danger" @click="softDeletePost(post)" style="float: right; padding: 3px 0"></b-icon>
+                        </el-tooltip>
+                      
                       </el-col>
                       <el-col :span="12">
-                        <b-icon icon="trash-fill" scale="3" variant="danger" @click="hardDeletePost(post)" style="float: right; padding: 3px 0"></b-icon>
+                         <el-tooltip class="item" effect="dark" content="Hard delete" placement="right">
+                          <b-icon icon="trash-fill" scale="3" variant="danger" @click="hardDeletePost(post)" style="float: right; padding: 3px 0"></b-icon>
+                        </el-tooltip>
+                      
                       </el-col>
                     </el-row>
                   </el-col>
                 </el-row>
               </div>
               <hr>
-              <div v-for="comment in post.comments" :key="comment.id" >
+              <div  v-for="comment in post.comments" :key="comment.id" >
                 <div class="comment-text">
                   <span class="comment-text-description">
                     {{comment.description }} 
@@ -32,6 +38,9 @@
                     <b-icon icon="trash-fill" scale="1" @click="deleteComment(comment, post.comments)" style="float: right;" variant="info"></b-icon>
                   </span>
                 </div>
+              </div>
+              <div v-if="post.comments.length == 0">
+                <span style="align:center">No comments, please write one</span>
               </div>
               <div class="comment-input-box">
                  <el-row>
@@ -66,6 +75,9 @@
                
               </div>
             </el-card>
+        </div>
+        <div v-if="posts.length == 0">
+          <span style="align:center">No posts, Click on Add post to create a new one</span>
         </div>
       </el-main>
     </el-container>

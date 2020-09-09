@@ -24,6 +24,9 @@
               </div>
             </el-card>
         </div>
+         <div v-if="posts.length == 0">
+            <span style="align:center">No post archived</span>
+          </div>
       </el-main>
     </el-container>
   </div>
