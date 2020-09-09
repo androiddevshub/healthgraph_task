@@ -1,4 +1,4 @@
-class Posts < Api
+class Posts < Grape::API
   format :json
   default_format :json
 

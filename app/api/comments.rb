@@ -1,4 +1,4 @@
-class Comments < Api
+class Comments < Grape::API
   format :json
   default_format :json
 
