@@ -77,7 +77,7 @@
             </el-card>
         </div>
         <div v-if="posts.length == 0">
-          <span style="align:center">No posts, Click on Add post to create a new one</span>
+          <div style="margin: auto; margin-top: 100px; width: 500px; height: 300px;">No posts for now, but If you want to add something then do click on New post</div>
         </div>
       </el-main>
     </el-container>

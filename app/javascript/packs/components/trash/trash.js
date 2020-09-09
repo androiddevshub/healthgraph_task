@@ -3,7 +3,8 @@ export default{
   name: 'trash',
   data(){
     return {
-      posts: []
+      posts: [],
+      baseUrl: window.location.href
     }
   },
   created() {
@@ -12,7 +13,7 @@ export default{
   methods: {
     initialize() {
       return axios
-        .get("http://localhost:3000/api/posts/trash/all")
+        .get(`${this.baseUrl.replace('trash','')}api/posts/trash/all`)
         .then(response => {
            this.posts = response.data.data;
          })
@@ -23,7 +24,7 @@ export default{
     restorePost(item) {
       const index = this.posts.indexOf(item);
       axios
-        .put(`http://localhost:3000/api/posts/restore/${item.id}`)
+        .put(`${this.baseUrl.replace('trash','')}api/posts/restore/${item.id}`)
         .then(response => {
           this.initialize();
           this.$notify({

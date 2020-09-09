@@ -22,11 +22,17 @@
                   </span>
                 </div>
               </div>
+              <div v-if="post.comments.length == 0">
+                <div style="margin: auto">No comments on the post yet</div>
+              </div>
             </el-card>
         </div>
-         <div v-if="posts.length == 0">
-            <span style="align:center">No post archived</span>
-          </div>
+        <div v-if="posts.length == 0">
+          <el-card shadow="always" class="box-card">
+            <div style="float: center; margin-top: 100px; ">No post archived</div>
+          </el-card>
+          
+        </div>
       </el-main>
     </el-container>
   </div>

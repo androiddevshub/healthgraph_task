@@ -9,18 +9,20 @@ export default{
       form: {
         description: '',
       },
-      comment:{
+      comment: {
         description: ''
-      }
+      },
+      baseUrl: window.location.href
     }
   },
   created() {
     this.initialize();
+    console.log(this.baseUrl)
   },
   methods: {
     initialize() {
       return axios
-        .get("http://localhost:3000/api/posts")
+        .get(`${this.baseUrl}api/posts`)
         .then(response => {
            this.posts = response.data.data;
          })
@@ -30,7 +32,7 @@ export default{
     },
     createPost() {
       return axios
-        .post("http://localhost:3000/api/posts",
+        .post(`${this.baseUrl}api/posts`,
           {
             description: this.form.description
           }
@@ -54,7 +56,7 @@ export default{
       const result = confirm("Are you sure you want to delete this post?"); 
       if (result){
         axios
-          .delete(`http://localhost:3000/api/posts/hard_delete/${item.id}`)
+          .delete(`${this.baseUrl}api/posts/hard_delete/${item.id}`)
           .then(response => {
             this.initialize();
             this.$notify({
@@ -72,7 +74,7 @@ export default{
     softDeletePost(item) {
       const index = this.posts.indexOf(item);
       axios
-        .put(`http://localhost:3000/api/posts/soft_delete/${item.id}`)
+        .put(`${this.baseUrl}api/posts/soft_delete/${item.id}`)
         .then(response => {
           this.initialize();
           this.$notify.info({
@@ -90,7 +92,7 @@ export default{
       this.$refs['commentBox'].forEach((item, index) => {
         if(item.$el[0].value !== ''){
           return axios
-            .post("http://localhost:3000/api/comments",
+            .post(`${this.baseUrl}api/comments`,
               {
                 post_id: post_id,
                 description: item.$el[0].value
@@ -110,7 +112,7 @@ export default{
     deleteComment(item, post){
       const index = post.indexOf(item);
       axios
-        .delete(`http://localhost:3000/api/comments/${item.id}`)
+        .delete(`${this.baseUrl}/api/comments/${item.id}`)
         .then(response => {
         })
         .catch(error => {
